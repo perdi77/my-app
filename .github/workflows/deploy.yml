@@ -19,7 +19,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_KEY }}
         source: "./"
-        target: "/apps/cloud-app"
+        target: "/apps/my-app"
 
     - name: Deploy on VPS
       uses: appleboy/ssh-action@v0.1.7
@@ -28,8 +28,8 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_KEY }}
         script: |
-          cd /apps/cloud-app
-          docker build -t cloud-app .
-          docker stop cloud-app || true
-          docker rm cloud-app || true
-          docker run -d --name cloud-app -p 80:80 cloud-app
+          cd /apps/my-app
+          docker build -t my-app .
+          docker stop my-app || true
+          docker rm my-app || true
+          docker run -d --name my-app -p 80:80 my-app
